@@ -1,0 +1,43 @@
+extends ../node_modules/pug-bootstrap/_bootstrap
+append styles
+  // Custom styles for this template
+  link(href='../../css/dashboard.css', rel='stylesheet')
+  link(href='../../css/room_history.css', rel='stylesheet')
+
+block body
+    title= title
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#')= title
+        #navbar.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#') Dashboard
+            li
+              a(href='#') Settings
+            li
+              a(href='#') Profile
+            li
+              a(href='#') Help
+          form.navbar-form.navbar-right
+            input.form-control(type='text', placeholder='Search...')
+    
+    .container-fluid
+      .row
+      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+        h1.page-header Dashboard
+        h2= message
+        ul.nav.nav-sidebar
+          each item in roomHistory
+            li= item.date + ' at '+ item.time + ': ' + 'Celcius: ' + item.temp + ' Humedad: ' + item.humidity
+          canvas(id="tempChart" width="300" height="300")
+          script(src='../../Chart.min.js')
+          script(src="../../chart.js")
+          script.
+            console.log('whatup')
