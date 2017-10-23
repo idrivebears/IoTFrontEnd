@@ -43,7 +43,7 @@ var myChart = new Chart(ctx, {
     data: {
         labels: getTimeList(pageData),
         datasets: [{
-            label: 'Datos de salon',
+            label: 'Temperatura de salon',
             data: getTemperatureList(pageData),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'

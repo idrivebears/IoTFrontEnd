@@ -78,14 +78,14 @@ router.route('/room/:room_id')
         });
     });
 
-router.route('/room/history/:room_id/')
+router.route('/room/stats/:room_id/')
     .get(function (req, res) {
         var roomId = req.params.room_id;
 
         console.log('Request made to room');
         console.log(roomId);
         var data;
-        var info = getRoomInfo(roomId, 5, function (error, response, body) {
+        var info = getRoomInfo(roomId, 20, function (error, response, body) {
             data = JSON.parse(body);
             //console.log(data.feeds);
             var roomName = 'Salón ' + roomId;
