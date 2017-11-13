@@ -1,11 +1,10 @@
 extends ../node_modules/pug-bootstrap/_bootstrap
 append styles
-  // Custom styles for this template
-  link(href='../../css/dashboard.css', rel='stylesheet')
-  link(href='../../css/room_history.css', rel='stylesheet')
-
-block body
-    title= title
+    // Custom styles for this template
+    link(href='../../css/dashboard.css', rel='stylesheet')
+    link(href='../../css/room_history.css', rel='stylesheet')
+block body 
+    title Escoge una aula
     nav.navbar.navbar-inverse.navbar-fixed-top
       .container-fluid
         .navbar-header
@@ -27,16 +26,20 @@ block body
               a(href='#') Help
           form.navbar-form.navbar-right
             input.form-control(type='text', placeholder='Search...')
-    
-    .container-fluid
-      .row
-      .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h1.page-header Dashboard
-        h2= message
-        ul.nav.nav-sidebar
-          canvas(id="tempChart" width="300" height="300")
-          each item in roomHistory
-            li(class='data')= item.date + ' | '+ item.time + ' | ' + '' + item.temp + ' | ' + item.humidity
-          script(src='../../Chart.min.js')
-          script(src="../../chart.js")
-          
+    .row
+        .container-fluid
+        .row
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            h1.page-header Dashboard
+            h2 Escoge una aula:
+            ul
+              h3 
+                a(href='/room/stats/Aula201') Aula 201
+              h3 
+                a(href='/room/stats/Aula202') Aula 202
+              h3 
+                a(href='/room/stats/Aula203') Aula 203
+              h3 
+                a(href='/room/stats/Aula204') Aula 204
+            img(src='../../img/edificiot.PNG' width='900px')
+
