@@ -3,9 +3,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-function getRoomInfo(roomID, results, callback) {
+var temperature_uri = "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=";
+
+function getRoomInfo(ts_uri, roomID, results, callback) {
     request({
-        uri: "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=" + results,
+        uri: ts_uri+results,
         method: "GET",
         timeout: 10000,
         followRedirect: true,
@@ -24,6 +26,8 @@ function processRoomInformation(data) {
 
     var temp = data.field1;
     var humidity = data.field2;
+    var presence = data.field3;
+    var power = data.field4;
 
     var id = data.entry_id;
 
@@ -32,12 +36,14 @@ function processRoomInformation(data) {
         date: date,
         time: time,
         temp: temp,
-        humidity: humidity
+        humidity: humidity,
+        presence: presence,
+        power: power
     };
 }
 
-function getRoomHistory(data) {
-    console.log('getRoomHistory()');
+function serializeData(data) {
+    console.log('serializeData()');
     console.log(data)
     var output = [];
 
@@ -69,12 +75,12 @@ router.route('/room/stats/:room_id/')
         console.log('Request made to room');
         console.log(roomId);
         var data;
-        var info = getRoomInfo(roomId, 20, function (error, response, body) {
+        var info = getRoomInfo(temperature_uri, roomId, 20, function (error, response, body) {
             data = JSON.parse(body);
             //console.log(data.feeds);
             var roomName = 'Salón ' + roomId;
-            var message = roomName + ': ' + 'Historial de Temperatura';
-            var roomHistory = getRoomHistory(data.feeds);
+            var message = roomName + ': ' + '';
+            var roomHistory = serializeData(data.feeds);
             res.render('room_stats_view', { title: roomName, message: message, roomHistory: roomHistory });
         });
     });
@@ -86,14 +92,7 @@ router.route('/room_pick/')
         console.log('Request made to room');
         console.log(roomId);
         var data;
-        var info = getRoomInfo(roomId, 20, function (error, response, body) {
-            data = JSON.parse(body);
-            //console.log(data.feeds);
-            var roomName = 'Salón ' + roomId;
-            var message = roomName + ': ' + 'Historial de Temperatura';
-            var roomHistory = getRoomHistory(data.feeds);
-            res.render('room_picker', { title: roomName, message: message, roomHistory: roomHistory });
-        });
+        res.render('room_picker', { title: "Escoge una aula", message: "message", roomHistory: "roomHistory" });
     });
 
 router.get('/', function (req, res) {
