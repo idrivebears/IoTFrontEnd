@@ -61,7 +61,7 @@ else {
     }
 }
 
-document.getElementById('horario-cfe').innerHTML = horarioCFE + " Costo por Kilowatt: " + getFee(horarioCFE);
+document.getElementById('horario-cfe').innerHTML = horarioCFE + ". Costo por Kilowatt: " + getFee(horarioCFE);
 
 var lastEntry = pageData[pageData.length-1];
 

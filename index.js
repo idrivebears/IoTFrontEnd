@@ -68,7 +68,7 @@ router.use(function (req, res, next) {
     next(); // make sure we go to the next routes and don't stop here
 });
 
-router.route('/room/stats/:room_id/')
+router.route('/room/:room_id/')
     .get(function (req, res) {
         var roomId = req.params.room_id;
 
@@ -85,7 +85,7 @@ router.route('/room/stats/:room_id/')
         });
     });
 
-router.route('/room_pick/')
+router.route('/room/')
     .get(function (req, res) {
         var roomId = req.params.room_id;
 

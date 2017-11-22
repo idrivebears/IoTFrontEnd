@@ -31,8 +31,8 @@ block body
     .container-fluid
       .row
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-        h1.page-header Dashboard
-        h2= message
+        h1.page-header= message
+    
         h3 Estadísticas del Aula
         h4 Horario actual CFE:
           div(id='horario-cfe')
@@ -40,16 +40,17 @@ block body
         ul.nav.nav-sidebar
           each item in roomHistory
             li(class='data hidden')= item.date + ' | '+ item.time + ' | ' + '' + item.temp + ' | ' + item.humidity + ' | ' + item.presence + ' | ' + item.power
-        .row
-          .col-sm-12.col-md-6.main
+        .row(id="chartrow")
+          .col-sm-12.col-md-4.main
             canvas(id="tempChart" width="300" height="300")
-          .col-sm-12.col-md-6.main
+          .col-sm-12.col-md-4.main
             canvas(id="humChart" width="300" height="300")
         .row
-          .col-sm-12.col-md-6.main
+          .col-sm-12.col-md-4.main
             canvas(id="presenceChart" width="300" height="300")
-          .col-sm-12.col-md-6.main
+          .col-sm-12.col-md-4.main
             canvas(id="powerChart" width="300" height="300")
+          
           
       script(src='../../Chart.min.js')
       script(src="../../chart.js")
