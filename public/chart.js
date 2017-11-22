@@ -168,7 +168,7 @@ var powerChart = new Chart(power_canvas, {
     data: {
         labels: getTimeList(pageData),
         datasets: [{
-            label: 'Uso de energía',
+            label: 'Uso de energía de A/C',
             data: getPowerList(pageData),
             backgroundColor: [
                 'rgba(255, 200, 2, 0.2)'

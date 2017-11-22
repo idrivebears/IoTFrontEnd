@@ -33,7 +33,10 @@ block body
       .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
         h1.page-header Dashboard
         h2= message
-        h3 Historial de Temperatura
+        h3 Estadísticas del Aula
+        h4 Horario actual CFE:
+          div(id='horario-cfe')
+        div(id='widget-recomendacion') Se recomienda: 
         ul.nav.nav-sidebar
           each item in roomHistory
             li(class='data hidden')= item.date + ' | '+ item.time + ' | ' + '' + item.temp + ' | ' + item.humidity + ' | ' + item.presence + ' | ' + item.power
@@ -50,4 +53,5 @@ block body
           
       script(src='../../Chart.min.js')
       script(src="../../chart.js")
+      script(src='../../recommend.js')
           

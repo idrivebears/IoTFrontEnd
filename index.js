@@ -96,7 +96,6 @@ router.route('/room_pick/')
     });
 
 router.get('/', function (req, res) {
-    getRoomInfo(2);
     res.send('<h1>My App</h1>');
 });
 
