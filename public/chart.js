@@ -3,6 +3,9 @@ var hum_canvas = document.getElementById("humChart").getContext('2d');
 var presence_canvas = document.getElementById("presenceChart").getContext('2d');
 var power_canvas = document.getElementById("powerChart").getContext('2d');
 
+function reloadPage() {
+    location.reload();
+}
 
 function getDataFromPage() {
     var data = document.getElementsByClassName('data');

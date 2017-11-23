@@ -35,6 +35,8 @@ block body
         h4 Horario actual CFE:
           div(id='horario-cfe')
         div(id='widget-recomendacion')
+        div
+          input(value="Refresh" onclick="reloadPage()").btn.btn-success
         ul.nav.nav-sidebar
           each item in roomHistory
             li(class='data hidden')= item.date + ' | '+ item.time + ' | ' + '' + item.temp + ' | ' + item.humidity + ' | ' + item.presence + ' | ' + item.power

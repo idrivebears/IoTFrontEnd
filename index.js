@@ -3,7 +3,15 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-var temperature_uri = "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=";
+//var temperature_uri = "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=";
+
+var availableRooms = {};
+
+availableRooms["Aula201"] = "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=";
+availableRooms["Aula202"] = "http://api.thingspeak.com/channels/370563/feeds.json?api_key=39I9SXEG3JJIGKIN&results=";
+availableRooms["Aula203"] = "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=";
+availableRooms["Aula204"] = "http://api.thingspeak.com/channels/340868/feeds.json?api_key=I21FG50YC5V0SR5J&results=";
+
 
 function getRoomInfo(ts_uri, roomID, results, callback) {
     request({
@@ -18,8 +26,8 @@ function getRoomInfo(ts_uri, roomID, results, callback) {
 }
 
 function processRoomInformation(data) {
-    console.log('processRoomInformation');
-    console.log(data);
+    //console.log('processRoomInformation');
+    //console.log(data);
     var date_split = data.created_at.split('T');
     var date = date_split[0];
     var time = date_split[1].substring(0, date_split[0].length-2); // remove the 'z' in the string
@@ -43,8 +51,8 @@ function processRoomInformation(data) {
 }
 
 function serializeData(data) {
-    console.log('serializeData()');
-    console.log(data)
+    //console.log('serializeData()');
+    //console.log(data)
     var output = [];
 
     data.forEach(function(element) {
@@ -64,7 +72,7 @@ var router = express.Router();
 //API filter
 router.use(function (req, res, next) {
     // do logging
-    console.log('Request made');
+    //console.log('Request made');
     next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -75,7 +83,8 @@ router.route('/room/:room_id/')
         console.log('Request made to room');
         console.log(roomId);
         var data;
-        var info = getRoomInfo(temperature_uri, roomId, 20, function (error, response, body) {
+        console.log(availableRooms[roomId]);
+        var info = getRoomInfo(availableRooms[roomId], roomId, 20, function (error, response, body) {
             data = JSON.parse(body);
             //console.log(data.feeds);
             var roomName = 'Salón ' + roomId;
@@ -89,8 +98,8 @@ router.route('/room/')
     .get(function (req, res) {
         var roomId = req.params.room_id;
 
-        console.log('Request made to room');
-        console.log(roomId);
+        //console.log('Request made to room');
+        //console.log(roomId);
         var data;
         res.render('room_picker', { title: "Escoge una aula", message: "message", roomHistory: "roomHistory" });
     });
