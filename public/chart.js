@@ -84,7 +84,7 @@ var tempChart = new Chart(temp_canvas, {
     data: {
         labels: getTimeList(pageData),
         datasets: [{
-            label: 'Temperatura en el Aula',
+            label: 'Temperatura en el Aula (Centigrados)',
             data: getTemperatureList(pageData),
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
@@ -112,7 +112,7 @@ var humChart = new Chart(hum_canvas, {
     data: {
         labels: getTimeList(pageData),
         datasets: [{
-            label: 'Humedad en el aula',
+            label: 'Humedad en el aula (% Humedad Relativa)',
             data: getHumidityList(pageData),
             backgroundColor: [
                 'rgba(5, 99, 132, 0.2)'
@@ -168,7 +168,7 @@ var powerChart = new Chart(power_canvas, {
     data: {
         labels: getTimeList(pageData),
         datasets: [{
-            label: 'Uso de energía de A/C',
+            label: 'Uso de energía de A/C (Watts)',
             data: getPowerList(pageData),
             backgroundColor: [
                 'rgba(255, 200, 2, 0.2)'

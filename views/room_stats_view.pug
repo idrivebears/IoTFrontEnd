@@ -18,13 +18,11 @@ block body
         #navbar.navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right
             li
-              a(href='#') Dashboard
+              a(href='../room/') Dashboard
             li
-              a(href='#') Settings
+              |
             li
-              a(href='#') Profile
-            li
-              a(href='#') Help
+              a(href='https://github.com/idrivebears/IoTFrontEnd') GitHub
           form.navbar-form.navbar-right
             input.form-control(type='text', placeholder='Search...')
     
@@ -36,7 +34,7 @@ block body
         h3 Estadísticas del Aula
         h4 Horario actual CFE:
           div(id='horario-cfe')
-        div(id='widget-recomendacion') Se recomienda: 
+        div(id='widget-recomendacion')
         ul.nav.nav-sidebar
           each item in roomHistory
             li(class='data hidden')= item.date + ' | '+ item.time + ' | ' + '' + item.temp + ' | ' + item.humidity + ' | ' + item.presence + ' | ' + item.power
