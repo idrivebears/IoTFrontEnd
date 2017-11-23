@@ -1,5 +1,5 @@
 console.log("Recommend.js data:");
-console.log(pageData[pageData.length-1]);
+//console.log(pageData[pageData.length-1]);
 console.log(Date.now());
 
 var dateNow = new Date();
@@ -61,8 +61,4 @@ else {
     }
 }
 
-document.getElementById('horario-cfe').innerHTML = horarioCFE + ". Costo por Kilowatt: " + getFee(horarioCFE);
-
-var lastEntry = pageData[pageData.length-1];
-
-document.getElementById('widget-recomendacion').innerHTML = '';
+document.getElementById('horario-cfe').innerHTML += horarioCFE + ". Costo por Kilowatt: " + getFee(horarioCFE);
