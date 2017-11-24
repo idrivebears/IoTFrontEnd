@@ -87,7 +87,7 @@ router.route('/room/:room_id/')
         console.log(roomId);
         var data;
         console.log(availableRooms[roomId]);
-        var info = getRoomInfo(availableRooms[roomId], roomId, 50, function (error, response, body) {
+        var info = getRoomInfo(availableRooms[roomId], roomId, 35, function (error, response, body) {
             data = JSON.parse(body);
             //console.log(data.feeds);
             var roomName = 'Salón ' + roomId;
