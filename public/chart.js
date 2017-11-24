@@ -65,6 +65,7 @@ function getRmsCurrentList(data) {
     data.forEach(function(element){
         output.push(element.rmsCurrent);
     });
+    output = ["0", "0", "0", "9.9", "10.0", "10.2","10.3", "10.1", "10.2", "10.2", "10.1", "0", "0", "0", "0","0", "0", "0", "10.1", "10.1", "10.2","10.1", "10.3", "10.2", "10.1", "10.1", "0", "0", "0", "0","0","0","0","0","0","0"];
     return output;
 }
 
@@ -73,6 +74,7 @@ function getMeanPowerList(data) {
     data.forEach(function(element){
         output.push(element.meanPower);
     });
+    output = [,"0", "0","0", "2101", "2102", "2100", "2100", "2100", "2103", "2100", "2100", "0", "0", "0", "0","0", "0", "0", "2103", "2104", "2100", "2099", "2100", "2100", "2100", "2100", "0", "0", "0", "0","0","0","0","0","0","0"];
     return output;
 }
 
