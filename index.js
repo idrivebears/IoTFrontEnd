@@ -35,7 +35,8 @@ function processRoomInformation(data) {
     var temp = data.field1;
     var humidity = data.field2;
     var presence = data.field3;
-    var power = data.field4;
+    var rmsCurrent = data.field4;
+    var meanPower = data.field5;
 
     var id = data.entry_id;
 
@@ -46,7 +47,9 @@ function processRoomInformation(data) {
         temp: temp,
         humidity: humidity,
         presence: presence,
-        power: power
+        rmsCurrent: rmsCurrent,
+        meanPower: meanPower
+
     };
 }
 
@@ -84,7 +87,7 @@ router.route('/room/:room_id/')
         console.log(roomId);
         var data;
         console.log(availableRooms[roomId]);
-        var info = getRoomInfo(availableRooms[roomId], roomId, 20, function (error, response, body) {
+        var info = getRoomInfo(availableRooms[roomId], roomId, 50, function (error, response, body) {
             data = JSON.parse(body);
             //console.log(data.feeds);
             var roomName = 'Salón ' + roomId;

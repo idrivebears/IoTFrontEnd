@@ -2,6 +2,7 @@ var temp_canvas = document.getElementById("tempChart").getContext('2d');
 var hum_canvas = document.getElementById("humChart").getContext('2d');
 var presence_canvas = document.getElementById("presenceChart").getContext('2d');
 var power_canvas = document.getElementById("powerChart").getContext('2d');
+var mean_power_canvas = document.getElementById("meanPowerChart").getContext('2d');
 
 function reloadPage() {
     location.reload();
@@ -59,10 +60,18 @@ function getCurrentPresence(data) {
     return data[data.length-1].presence;
 }
 
-function getPowerList(data) {
+function getRmsCurrentList(data) {
     var output = [];
     data.forEach(function(element){
-        output.push(element.power);
+        output.push(element.rmsCurrent);
+    });
+    return output;
+}
+
+function getMeanPowerList(data) {
+    var output = [];
+    data.forEach(function(element){
+        output.push(element.meanPower);
     });
     return output;
 }
@@ -76,6 +85,8 @@ function getTimeList(data) {
     data.forEach(function(element){
         output.push(element.time);
     });
+    console.log("Time list:");
+    console.log(output);
     return output;
 }
 
@@ -171,13 +182,41 @@ var powerChart = new Chart(power_canvas, {
     data: {
         labels: getTimeList(pageData),
         datasets: [{
-            label: 'Uso de energía de A/C (Watts)',
-            data: getPowerList(pageData),
+            label: 'Corriente RMS (A)',
+            data: getRmsCurrentList(pageData),
             backgroundColor: [
                 'rgba(255, 200, 2, 0.2)'
             ],
             borderColor: [
                 'rgba(255,200,2,1)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+        responsive:false
+    }
+});
+
+var meanPowerChart = new Chart(mean_power_canvas, {
+    type: 'line',
+    data: {
+        labels: getTimeList(pageData),
+        datasets: [{
+            label: 'Potencia Instantánea Promedia (kW)',
+            data: getMeanPowerList(pageData),
+            backgroundColor: [
+                'rgba(255, 120, 50, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,120,50,1)'
             ],
             borderWidth: 2
         }]
